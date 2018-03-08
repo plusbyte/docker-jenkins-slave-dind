@@ -9,7 +9,7 @@ ENV DOCKER_COMPOSE_VERSION 1.3.3
 RUN useradd -r -m -G docker jenkins
 
 # Install necessary packages
-RUN apt-get update && apt-get install -y curl zip openjdk-7-jre-headless supervisor && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y curl zip openjdk-8-jre-headless supervisor && rm -rf /var/lib/apt/lists/*
 
 # Install Jenkins Swarm Client
 RUN wget -q https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/${SWARM_CLIENT_VERSION}/swarm-client-${SWARM_CLIENT_VERSION}.jar -P /home/jenkins
