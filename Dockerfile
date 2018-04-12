@@ -4,6 +4,7 @@ MAINTAINER Decheng Zhang <killercentury@gmail.com>
 
 ENV SWARM_CLIENT_VERSION 3.9
 ENV DOCKER_COMPOSE_VERSION 1.3.3
+ENV RANCHER_CLI_VERSION 0.6.8
 
 # Add a Jenkins user with permission to run docker commands
 RUN useradd -r -m -G docker jenkins
@@ -17,6 +18,10 @@ RUN wget -q https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-cl
 # Install Docker Compose
 RUN curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 RUN chmod +x /usr/local/bin/docker-compose
+
+# Install Rancher CLI
+RUN wget -q https://releases.rancher.com/cli/v${RANCHER_CLI_VERSION}/rancher-linux-amd64-v${RANCHER_CLI_VERSION}.tar.gz -P /home/jenkins
+RUN tar -xvzf rancher-linux-amd64-v${RANCHER_CLI_VERSION}.tar.gz && mv rancher-v${RANCHER_CLI_VERSION}/rancher /usr/local/bin/rancher && rm -r rancher-v${RANCHER_CLI_VERSION}
 
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
