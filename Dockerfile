@@ -21,7 +21,7 @@ RUN chmod +x /usr/local/bin/docker-compose
 
 # Install Rancher CLI
 RUN wget -q https://releases.rancher.com/cli/v${RANCHER_CLI_VERSION}/rancher-linux-amd64-v${RANCHER_CLI_VERSION}.tar.gz -P /tmp
-RUN tar -xvzf /tmp/rancher-linux-amd64-v${RANCHER_CLI_VERSION}.tar.gz && mv /tmp/rancher-v${RANCHER_CLI_VERSION}/rancher /usr/local/bin/rancher && rm -r /tmp/rancher-*
+RUN tar -xvzf /tmp/rancher-linux-amd64-v${RANCHER_CLI_VERSION}.tar.gz -C /tmp && mv /tmp/rancher-v${RANCHER_CLI_VERSION}/rancher /usr/local/bin/rancher && rm -r /tmp/rancher-*
 
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
